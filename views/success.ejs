@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/3cf256f880.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding-top: 80px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header text-center">
+            <h1><i class="fab fa-google-drive"></i> Profile Page</h1>
+            <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
+        </div>
+
+        <div class="row">
+            <!-- GOOGLE INFORMATION -->
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3 class="text-danger">
+                        <i class="fab fa-google"></i>oogle Account
+                    </h3>
+
+                    <p>
+                        <strong>name</strong>
+                        <%= name %>
+                            <br />
+                    </p>
+                    <p>
+                        <strong>pic</strong>
+                        <img src="<%=profPic%>" width="200" height="200" alt="" />
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3 class="text-danger">
+                        <i class="fab fa-google-drive"></i> Upload File to Google
+                        Drive
+                    </h3>
+                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="file" class="form-control" name="file" required id="" />
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-block btn-danger">
+                                Upload File
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</html>
