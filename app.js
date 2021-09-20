@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 
             name = response.data.name
             profPic = response.data.picture
-            res.render("success", { name: name, profPic: profPic, success: false })
+            res.render("drive_success", { name: name, profPic: profPic, success: false })
         })
     }
 })
@@ -133,12 +133,12 @@ app.post('/upload', (req, res) => {
 
             //delete the file in images folder
             fs.unlinkSync(req.file.path)
-            res.render("success", { name: name, profPic: profPic, success: true })
+            res.render("drive_success", { name: name, profPic: profPic, success: true })
         })
     })
 })
 
-app.get('/test',(req,res)=>{
+app.get('/test', (req, res) => {
     res.render("success2")
 })
 
