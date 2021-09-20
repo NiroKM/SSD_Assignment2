@@ -47,6 +47,14 @@
                         <i class="fab fa-google-drive"></i> Upload File to Google
                         Drive
                     </h3>
+                    <% if (success) { %>
+                        <div class="alert alert-success alert-dismissible">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close"
+                            >×</a
+                          >
+                          <strong>Success!</strong> File Uploaded.
+                        </div>
+                        <%}%>
                     <form action="/upload" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <input type="file" class="form-control" name="file" required id="" />
