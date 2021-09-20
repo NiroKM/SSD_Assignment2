@@ -23,16 +23,17 @@ let isUserAuthenticated = false
 
 app.set("view engine", "ejs")
 
+//GET localhost:5000/
+//Home page Route
+//Public
 app.get('/', (req, res) => {
     if (!isUserAuthenticated) {
         let url = oAuthClient.generateAuthUrl({
             access_type: 'offline',
             scope: SCOPES
         })
-        console.log(url)
         res.render('index', { url: url })
     } else {
-
         let oAuth2 = google.oauth2({
             auth: oAuthClient,
             version: 'v2'
@@ -42,7 +43,6 @@ app.get('/', (req, res) => {
             if (error)
                 throw error
 
-            console.log(response.data)
             name = response.data.name
             profPic = response.data.picture
             res.render("success", { name: name, profPic: profPic, success: false })
@@ -50,6 +50,9 @@ app.get('/', (req, res) => {
     }
 })
 
+//GET localhost:5000/google/callback
+//Authenticating user using goole account and getting accessToken
+//Private
 app.get('/google/callback', (req, res) => {
     const code = req.query.code
     if (code) {
@@ -59,7 +62,6 @@ app.get('/google/callback', (req, res) => {
                 console.log(error)
             } else {
                 console.log("User Authenticated successfully")
-                console.log(accessToken)
                 oAuthClient.setCredentials(accessToken)
                 isUserAuthenticated = true
                 res.redirect('/')
@@ -68,7 +70,9 @@ app.get('/google/callback', (req, res) => {
     }
 })
 
-//logout function 
+//GET localhost:5000/logout
+//Logging out the authenticated user
+//Public
 app.get('/logout', (req, res) => {
     isUserAuthenticated = false
     res.redirect('/')
@@ -98,6 +102,10 @@ const drive = google.drive({
     auth: oAuthClient
 })
 
+
+//GET localhost:5000/upload
+//upload file to drive
+//Private  - need accessToken
 app.post('/upload', (req, res) => {
     upload(req, res, (err) => {
         if (err)
@@ -114,7 +122,7 @@ app.post('/upload', (req, res) => {
             body: fs.createReadStream(req.file.path)
         }
 
-        //upload using drive api
+        //upload using drives' create api
         drive.files.create({
             resource: fileMetaData,
             media: media,
