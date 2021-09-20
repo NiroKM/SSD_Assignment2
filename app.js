@@ -138,6 +138,10 @@ app.post('/upload', (req, res) => {
     })
 })
 
+app.get('/test',(req,res)=>{
+    res.render("success2")
+})
+
 app.listen(5000, () => {
     console.log("App started on Port 5000")
 })
