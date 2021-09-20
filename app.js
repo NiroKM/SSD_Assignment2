@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
             access_type: 'offline',
             scope: SCOPES
         })
-        res.render('index', { url: url })
+        res.render('home', { url: url })
     } else {
         let oAuth2 = google.oauth2({
             auth: oAuthClient,
@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 
             name = response.data.name
             profPic = response.data.picture
-            res.render("drive_success", { name: name, profPic: profPic, success: false })
+            res.render("selection", { name: name, profPic: profPic })
         })
     }
 })
@@ -67,6 +67,28 @@ app.get('/google/callback', (req, res) => {
                 res.redirect('/')
             }
         })
+    }
+})
+
+//GET localhost:5000/drive
+//Redirecting user to drive upload page if user is authenticated
+//Private
+app.get('/drive', (req, res) => {
+    if (isUserAuthenticated) {
+        res.render("drive_success", { name: name, profPic: profPic, success: false })
+    } else {
+        res.redirect('/')
+    }
+})
+
+//GET localhost:5000/youtube
+//Redirecting user to youtube upload page if user is authenticated
+//Private
+app.get('/youtube', (req, res) => {
+    if (isUserAuthenticated) {
+        // res.render("youtube_page_name", { name: name, profPic: profPic, success: false })
+    } else {
+        res.redirect('/')
     }
 })
 
