@@ -1,19 +1,11 @@
 <submission>
-    <regnos> IT18144772 </regnos>
-    <regnos> IT18068610 </regnos>
-    <regnos> IT18152074 </regnos>
-
-    <names> Niroshan.K </names>
-    <names> Pirathikaran.V </names>
-    <names> Sangeeth_Raj.A </names>
-
-    <email> it18144772@my.sliit.lk </email>
-    <email> it18068610@my.sliit.lk </email>
-    <email> it18152074@my.sliit.lk </email>
+    <regnos> IT18144772 ; IT18068610 ; IT18152074 </regnos>
+    
+    <names> Niroshan.K ; Pirathikaran.V ; Sangeeth_Raj.A </names>
+    
+    <email>it18144772@my.sliit.lk ; it18068610@my.sliit.lk ; it18152074@my.sliit.lk</email>
 
     <phone> 0766404210 </phone>
-    <phone> 0776103254 </phone>
-    <phone> 0775544651 </phone>
 
     <github>
         <url>https://github.com/Niroshan-Krishnamoorthy/SSD_Assignment2</url>
