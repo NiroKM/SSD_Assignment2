@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Service</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/3cf256f880.js" crossorigin="anonymous"></script>
+    <style>
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid yellowgreen;
+            object-fit: contain;
+            background-color: #ebe6e6
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container pt-5">
+        <div class="jumbotron">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <h1>Select a service from following</h1>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-12">
+                        <img src="<%=profPic%>" width="200" height="200" alt="" class="profile-pic" />
+                        <span style="font-weight: 500;">
+                            <%=name%>
+                        </span>
+                    </div>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <a href="/drive" class="btn btn-danger mr-5">Use <i class="fab fa-google-drive"></i> as
+                            <%=name%></a>
+                        <a href="/youtube" class="btn btn-danger mr-5">Use <i class="fab fa-youtube"></i> as <%=name%>
+                                </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
