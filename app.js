@@ -4,7 +4,7 @@ const multer = require('multer')
 const fs = require('fs')
 const path = require("path")
 const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URL } = require('./oAuth')
-const { DRIVE_SCOPE, USER_SCOPE } = require('./scopes')
+const { DRIVE_SCOPE, USER_SCOPE, YOUTUBE_SCOPE } = require('./scopes')
 
 
 const app = express()
@@ -17,7 +17,8 @@ const oAuthClient = new google.auth.OAuth2(
     REDIRECT_URL
 )
 
-const SCOPES = DRIVE_SCOPE + " " + USER_SCOPE
+const SCOPES = DRIVE_SCOPE + " " + USER_SCOPE + " "+YOUTUBE_SCOPE
+// const YOUTUBE_SCO= YOUTUBE_SCOPE+ " "+ USER_SCOPE
 
 let isUserAuthenticated = false
 
@@ -81,12 +82,14 @@ app.get('/drive', (req, res) => {
     }
 })
 
+
+
 //GET localhost:5000/youtube
 //Redirecting user to youtube upload page if user is authenticated
 //Private
 app.get('/youtube', (req, res) => {
     if (isUserAuthenticated) {
-        // res.render("youtube_page_name", { name: name, profPic: profPic, success: false })
+        res.render("youtube_success", { name: name, pic: profPic, success: false })
     } else {
         res.redirect('/')
     }
@@ -159,6 +162,55 @@ app.post('/upload', (req, res) => {
         })
     })
 })
+
+app.post("/upload_youtube", (req, res) => {
+    upload(req, res, function (err) {
+      if (err) {
+        console.log(err);
+        return res.end("Something went wrong");
+      } else {
+        console.log(req.file.path);
+        title = req.body.title;
+        description = req.body.description;
+        // tags = req.body.tags;
+        console.log(title);
+        console.log(description);
+        // console.log(tags);
+        const youtube = google.youtube({ version: "v3", auth: oAuthClient });
+        console.log(youtube)
+        youtube.videos.insert(
+          {
+            resource: {
+              // Video title and description
+              snippet: {
+                  title:title,
+                  description:description,
+                  // tags:tags
+              },
+              // I don't want to spam my subscribers
+              status: {
+                privacyStatus: "private",
+              },
+            },
+            // This is for the callback function
+            part: "snippet,status",
+  
+            // Create the readable stream to upload the video
+            media: {
+              body: fs.createReadStream(req.file.path)
+            },
+          },
+          (err, data) => {
+            if(err) throw err
+            console.log(data)
+            console.log("Done.");
+            fs.unlinkSync(req.file.path);
+            res.render("youtube_success", { name: name, pic: profPic, success: true });
+          }
+        );
+      }
+    });
+  });
 
 app.get('/test', (req, res) => {
     res.render("success2")
