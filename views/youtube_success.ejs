@@ -31,6 +31,7 @@
                         <h1><i style="color: red;" class="fab fa-youtube"></i> YouTube Video Upload</h1>
                     </div>
                 </div>
+                
                 <div class="row my-3">
                     <div class="col-10">
                         <img src="<%=pic%>" width="200" height="200" alt="" class="profile-pic" />
@@ -39,56 +40,52 @@
                         </span>
                     </div>
                     <div class="col-2">
-                        <a href="/logout" class="btn btn-primary btn-md">Logout</a>
-                        <div class="mt-2"><a href="/" class="btn btn-primary btn-md">Back</a></div>
+                        <div class="mt-2"><a href="/logout" class="btn btn-dark btn-md">Logout</a>
+                            <a href="/" class="btn btn-dark btn-md">Back</a>
+                        </div>
                     </div>
-                   
-
                 </div>
-                <div class="row justify-content-md-center">
-                    <div class="col col-lg-1">
 
-                    </div>
+                <div class="row justify-content-md-center">
+
+                    <div class="col col-lg-1"></div>
+                    
                     <div class="col-md-auto">
                         <% if (success) { %>
                             <div class="alert alert-success alert-dismissible">
-                              <a href="#" class="close" data-dismiss="alert" aria-label="close"
-                                >×</a
-                              >
-                              <strong>Success!</strong> Your Video is Uploaded to Youtube.
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                <strong>Success!</strong> Your Video is Uploaded to Youtube.
                             </div>
                             <%}%>
-                              
+
                                 <form action="/upload_youtube" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
-                                      <div class="form-group">
-                                          <input type="text" name="title" placeholder="Title" required class="form-control">
-                                      </div>
-                                      <div class="form-group">
-                                          <textarea name="description" class="form-control" cols="30" rows="10" placeholder="description"></textarea>
-                                      </div>
-                                
-                                      <div class="form-group">
-                                      <input
-                                        type="file"
-                                        class="form-control"
-                                        name="file"
-                                        required
-                                        id=""
-                                      />
-                                      </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                      <button class="btn btn-block btn-danger">
-                                        Upload Video
-                                      </button>
-                                    </div>
-                                  </form>
-                    </div>
-                    <div class="col col-lg-1">
+                                        <label><strong>Details</strong></label>
+                                        <div class="form-group">
+                                            <input type="text" name="title" placeholder="Title" required
+                                                class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="description" class="form-control" cols="30" rows="10"
+                                                placeholder="description"></textarea>
+                                        </div>
 
+                                        <div class="form-group">
+                                            <input type="file" class="form-control-file" name="file" required id="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-block btn-danger">
+                                            Upload Video
+                                        </button>
+                                    </div>
+
+                                </form>
                     </div>
+
+                    <div class="col col-lg-1"></div>
+
                 </div>
 
             </div>
