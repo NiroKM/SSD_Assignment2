@@ -24,9 +24,9 @@ let isUserAuthenticated = false
 
 app.set("view engine", "ejs")
 
-//GET localhost:5000/
-//Home page Route
-//Public
+/*GET localhost:5000/
+Home page Route
+Public*/
 app.get('/', (req, res) => {
     if (!isUserAuthenticated) {
         let url = oAuthClient.generateAuthUrl({
@@ -51,9 +51,9 @@ app.get('/', (req, res) => {
     }
 })
 
-//GET localhost:5000/google/callback
-//Authenticating user using goole account and getting accessToken
-//Private
+/*GET localhost:5000/google/callback
+Authenticating user using goole account and getting accessToken
+Private*/
 app.get('/google/callback', (req, res) => {
     const code = req.query.code
     if (code) {
@@ -71,9 +71,9 @@ app.get('/google/callback', (req, res) => {
     }
 })
 
-//GET localhost:5000/drive
-//Redirecting user to drive upload page if user is authenticated
-//Private
+/* GET localhost:5000/drive
+Redirecting user to drive upload page if user is authenticated
+Private */
 app.get('/drive', (req, res) => {
     if (isUserAuthenticated) {
         res.render("drive_success", { name: name, profPic: profPic, success: false })
@@ -82,9 +82,9 @@ app.get('/drive', (req, res) => {
     }
 })
 
-//GET localhost:5000/youtube
-//Redirecting user to youtube upload page if user is authenticated
-//Private
+/* GET localhost:5000/youtube
+Redirecting user to youtube upload page if user is authenticated
+Private */
 app.get('/youtube', (req, res) => {
     if (isUserAuthenticated) {
         res.render("youtube_success", { name: name, pic: profPic, success: false })
@@ -94,9 +94,9 @@ app.get('/youtube', (req, res) => {
 })
 
 
-//GET localhost:5000/logout
-//Logging out the authenticated user
-//Public
+/* GET localhost:5000/logout
+Logging out the authenticated user
+Public */
 app.get('/logout', (req, res) => {
     isUserAuthenticated = false
     res.redirect('/')
@@ -122,16 +122,16 @@ const upload = multer({
 }).single("file"); //Field name and max count
 
 
-//creating a drive object
+/* creating a drive object */
 const drive = google.drive({
     version: 'v3',
     auth: oAuthClient
 })
 
 
-//GET localhost:5000/upload
-//upload file to drive
-//Private  - need accessToken
+/* GET localhost:5000/upload
+upload file to drive
+Private  - need accessToken */
 app.post('/upload', (req, res) => {
     upload(req, res, (err) => {
         if (err)
@@ -165,9 +165,9 @@ app.post('/upload', (req, res) => {
 })
 
 
-//GET localhost:5000/upload_youtube
-//upload video to youtube
-//Private  - need accessToken
+/* GET localhost:5000/upload_youtube
+upload video to youtube
+Private  - need accessToken */
 app.post("/upload_youtube", (req, res) => {
     upload(req, res, function (err) {
       if (err) {
