@@ -103,6 +103,8 @@ app.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
+
+
 const Storage = multer.diskStorage({
     destination: function (req, file, callback) {
         let dir = './images'
@@ -163,6 +165,9 @@ app.post('/upload', (req, res) => {
     })
 })
 
+//GET localhost:5000/upload_youtube
+//upload video to youtube
+//Private  - need accessToken
 app.post("/upload_youtube", (req, res) => {
     upload(req, res, function (err) {
       if (err) {
