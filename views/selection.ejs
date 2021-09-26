@@ -27,23 +27,33 @@
             <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
-                        <h1>Select a service from following</h1>
+                        <h1>SELECT A SERVICE</h1>
                     </div>
                 </div>
                 <div class="row my-3">
-                    <div class="col-12">
+                    <div class="col-10">
                         <img src="<%=profPic%>" width="200" height="200" alt="" class="profile-pic" />
                         <span style="font-weight: 500;">
                             <%=name%>
                         </span>
                     </div>
+                    <div class="col-2">
+                        <div class="mt-2">
+                            <a href="/logout" class="btn btn-dark btn-md">Logout</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
-                        <a href="/drive" class="btn btn-danger mr-5">Use <i class="fab fa-google-drive"></i> as
-                            <%=name%></a>
+                        <h4>Google Drive</h4>
+                        <a href="/drive" class="btn btn-primary mr-5">Use <i class="fab fa-google-drive"></i> as
+                            <%=name%>
+                        </a>
+                    </div>
+                    <div class="col-md-auto">
+                        <h4>YouTube</h4>
                         <a href="/youtube" class="btn btn-danger mr-5">Use <i class="fab fa-youtube"></i> as <%=name%>
-                                </a>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
+/* Client Credentials*/
 const oAuth2Cred = require('./credentials.json')
-
 
 const CLIENT_ID = oAuth2Cred.web.client_id
 const CLIENT_SECRET = oAuth2Cred.web.client_secret
