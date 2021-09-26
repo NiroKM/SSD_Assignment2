@@ -171,44 +171,33 @@ Private  - need accessToken */
 app.post("/upload_youtube", (req, res) => {
     upload(req, res, function (err) {
       if (err) {
-        console.log(err);
-        return res.end("Something went wrong");
+        return res.end("Youtube upload error!!!");
       } else {
-        console.log(req.file.path);
-        title = req.body.title;
-        description = req.body.description;
-        // tags = req.body.tags;
-        console.log(title);
-        console.log(description);
-        // console.log(tags);
+        youtube_title = req.body.youtube_title;
+        youtube_description = req.body.youtube_description;
         const youtube = google.youtube({ version: "v3", auth: oAuthClient });
-        console.log(youtube)
         youtube.videos.insert(
           {
             resource: {
-              // Video title and description
+              // Youtube video title
               snippet: {
-                  title:title,
-                  description:description,
-                  // tags:tags
+                  title:youtube_title,
+                  description:youtube_description,
               },
-              // I don't want to spam my subscribers
+              // I keep the state as private
               status: {
                 privacyStatus: "private",
               },
             },
-            // This is for the callback function
+            // callback function
             part: "snippet,status",
   
-            // Create the readable stream to upload the video
             media: {
               body: fs.createReadStream(req.file.path)
             },
           },
           (err, data) => {
             if(err) throw err
-            console.log(data)
-            console.log("Done.");
             fs.unlinkSync(req.file.path);
             res.render("youtube_success", { name: name, pic: profPic, success: true });
           }
